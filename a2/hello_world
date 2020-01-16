@@ -1,0 +1,16 @@
+"""
+Author: Zach DeHart
+Date: 1/16/2020
+Goal: Hello World Statment
+"""
+## Declare Variables
+my_name ='Zach DeHart'
+age = 22
+major = 'IS'
+state = 'TN'
+
+## print statements
+print('Hello World, I am ' + my_name)
+print('I am ' + str(age))
+print('I am from ' + state)
+print(' and I am Majoring ' + major)
