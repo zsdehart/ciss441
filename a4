@@ -1,0 +1,12 @@
+# importing the csv file: each row is a dictionary
+# ufo_sightings is a list of all the ufo sighting dictionaries
+import csv                                          # command for improting csv
+OlympicMedals = []                                  # create and empty list var
+RowCount = 0
+with open('OlympicMedals.csv', 'r') as csvfile:    # opens csv file that can be ref fro csvfile
+    reader = csv.DictReader(csvfile)                # uses the csv DictReader Method
+    for OlympicMedalsRow in reader:
+        OlympicMedals.append(OlympicMedalsRow)
+        RowCount += 1
+        if RowCount <=10 or RowCount % 4000 == 0:
+            print(OlympicMedalsRow['Year'], OlympicMedalsRow['Sport'], OlympicMedalsRow['Athlete'])
