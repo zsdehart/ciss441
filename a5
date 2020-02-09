@@ -1,0 +1,78 @@
+# importing the csv file: each row is a dictionary
+# ufo_sightings is a list of all the ufo sighting dictionaries
+import csv                                          # command for improting csv
+import sqlite3
+
+DB_FILE = 'OlympicMedals.db'
+conn = sqlite3.connect(DB_FILE)
+
+
+def create_OlympicMedals_table():
+    """ 
+    this will be creating an olympic medals table if it does not exist
+    """
+    cur = conn.cursor()
+    str_sql = """
+        CREATE TABLE if not exists OlympicMedals(
+            id INT primary key autoincrement
+            city TEXT
+            year INT 
+            sport TEXT
+            dicipline TEXT
+            event TEXT
+            athlete TEXT
+            genter TEXT);
+    """
+    cur.execute(str_sql)
+    conn.commit()
+
+
+def open_csv_insert_into_db():
+    cur = conn.cursor()
+    RowCount = 0
+    with open('OlympicMedals.csv', 'r') as csvfile:    # opens csv file that can be ref fro csvfile
+        reader = csv.DictReader(csvfile)                # uses the csv DictReader Method
+        for OlympicMedalsRow in reader:
+            RowCount += 1
+
+            t_year = OlympicMedalsRow['Year']
+            t_sport = OlympicMedalsRow['Sport']
+            t_athlete = OlympicMedalsRow['Athlete']
+
+            sql_str_insert_with_param = """
+                INSERT INTO Olympic Medals
+                    (Year, Sport, Athlete)
+                VALUES
+                    (?, ?, ?,)
+            """
+            data_tuple = (t_year, t_sport, t_athlete)
+            cur.execute(sql_str_insert_with_param, data_tuple)
+            conn.commit()
+
+
+            if RowCount <=10 or RowCount % 4000 == 0:
+                #print(OlympicMedalsRow['Year'], OlympicMedalsRow['Sport'], OlympicMedalsRow['Athlete'])
+                print(RowCount, t_year, t_sport, t_athlete)
+    cur.close()
+
+def get_Olympic_Medals_by_year()
+    print('\n Report by year: '+ year)
+    cur = conn.cursor()
+    str_sql = """
+        select id, Year, Sport, Athlete
+        from OlympicMedals
+    """
+    data_tuple = (Year, )
+    cur.execute(str_sql, data_tuple)
+    records = cur.fetchall()
+    cur.close()
+
+
+def main():
+    create_OlympicMedals_table()
+    open_csv_insert_into_db()
+    get_Olympic_Medals_by_year()
+    conn.close()
+
+if __name__ == "__main__":
+    main()
