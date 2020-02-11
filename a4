@@ -1,5 +1,3 @@
-# importing the csv file: each row is a dictionary
-# ufo_sightings is a list of all the ufo sighting dictionaries
 import csv                                          # command for improting csv
 OlympicMedals = []                                  # create and empty list var
 RowCount = 0
