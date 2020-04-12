@@ -1,0 +1,18 @@
+import datetime as dt
+import matplotlib.pyplot as pyplot
+from matplotlib import style
+import pandas as pd
+import pandas_datareader.data as web
+
+##pulling info from MSFT stock from Jan 1st 2018 - Dec 31 2019
+style.use('ggplot')
+
+start = dt.datetime(2018,1,1)
+end = dt.datetime(2019,12,31)
+
+df = web.DataReader('MSFT', 'yahoo', start, end)
+
+print(df.tail(6))
+
+##Creates CSV for data
+df.to_csv('msft.csv')
