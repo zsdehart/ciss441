@@ -21,11 +21,11 @@ for s_ct, state_row in enumerate(state_elems):
             int(death_tag.text.replace(',',''))
             ])
 df = pd.DataFrame(state_data, columns = ['State', 'Confirmed', 'Deaths'])
-df.to_csv(os.path.join('data', 'city_covid_data.csv')
+df.to_csv('city_covid_data.csv')
 
 df.sort_values(by=['Confirmed'], inplace=True, ascending=True)
 print(df.head(10))
 ax = df.head(25).plot.bar(x='State', y={'Confirmed', 'Deaths'}, rot=0)
 plt.xticks(rotation=45)
-plt.savefig(os.path.join('data', 'least25.pdf'))
+plt.savefig('least25.pdf')
 plt.show()
